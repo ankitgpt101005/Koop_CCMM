@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.2.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.koopid.ccmm</groupId>
+	<artifactId>Koopid-AACC-Gateway</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Koopid-AACC-Gateway</name>
+	<description>Koopid AACC Connector</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+      	<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+	   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.websocket</groupId>
+			<artifactId>javax.websocket-api</artifactId>
+		</dependency>
+
+		<dependency>
+		    <groupId>javax.ws.rs</groupId>
+		    <artifactId>javax.ws.rs-api</artifactId>
+		    <version>2.0</version>
+		</dependency>		
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.bean-matchers</groupId>
+			<artifactId>bean-matchers</artifactId>
+			<version>0.11</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>java-hamcrest</artifactId>
+			<version>2.0.0.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>2.0.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito2</artifactId>
+			<version>2.0.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-quartz</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>5.2.3.RELEASE</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-messaging</artifactId>
+			<version>5.2.3.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.json</groupId>
+    		<artifactId>json</artifactId>
+	    	<version>20090211</version>
+		</dependency>
+
+    	<dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+            <version>5.3.0.RELEASE</version>
+        </dependency>
+	
+ 		<dependency>
+		    <groupId>com.koopid</groupId>
+		    <artifactId>koopid</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/src/main/resources/redis.jar</systemPath>
+		</dependency>
+ 			
+ 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.4</version>
+        </dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>java11</id>
+			<activation>
+				<jdk>[11,)</jdk>
+			</activation>
+
+			<dependencies>
+				<dependency>
+					<groupId>org.glassfish.jaxb</groupId>
+					<artifactId>jaxb-runtime</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+    				<includeSystemScope>true</includeSystemScope>
+  				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.14.0</version>
+				<executions>
+					<!--<execution> <id>schema1-generate</id> <goals> <goal>generate</goal> 
+						</goals> <configuration> <schemaLanguage>WSDL</schemaLanguage> <generatePackage>com.koopid.ccmm.wsdl.ci_utility</generatePackage> 
+						<schemas> <schema> <url>http://10.10.30.61/ccmmwebservices/CIUtilityWs.asmx?wsdl</url> 
+						</schema> </schemas> </configuration> </execution> -->
+
+					<!-- <execution> <id>schema2-generate</id> <goals> <goal>generate</goal> 
+						</goals> <configuration> <schemaLanguage>WSDL</schemaLanguage> <generatePackage>com.koopid.ccmm.wsdl.ci_webcomm</generatePackage> 
+						<schemas> <schema> <url>http://10.10.30.61/ccmmwebservices/CIWebCommsWs.asmx?wsdl</url> 
+						</schema> </schemas> </configuration> </execution> -->
+
+					<!-- <execution> <id>schema3-generate</id> <goals> <goal>generate</goal> 
+						</goals> <configuration> <schemaLanguage>WSDL</schemaLanguage> <generatePackage>com.koopid.ccmm.wsdl.ci_customer</generatePackage> 
+						<schemas> <schema> <url>http://10.10.30.61/ccmmwebservices/CICustomerWs.asmx?wsdl</url> 
+						</schema> </schemas> </configuration> </execution> -->
+
+					<!-- <execution> <id>schema4-generate</id> <goals> <goal>generate</goal> 
+						</goals> <configuration> <schemaLanguage>WSDL</schemaLanguage> <generatePackage>com.koopid.ccmm.wsdl.ci_skill_set</generatePackage> 
+						<schemas> <schema> <url>http://10.10.30.61/ccmmwebservices/CISkillsetWs.asmx?wsdl</url> 
+						</schema> </schemas> </configuration> </execution> -->
+
+					<!-- <execution> <id>schema5-generate</id> <goals> <goal>generate</goal> 
+						</goals> <configuration> <schemaLanguage>WSDL</schemaLanguage> <generatePackage>com.koopid.ccmm.wsdl.ci_contact</generatePackage> 
+						<schemas> <schema> <url>http://10.10.30.61/ccmmwebservices/CIContactWs.asmx?wsdl</url> 
+						</schema> </schemas> </configuration> </execution> -->
+
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
